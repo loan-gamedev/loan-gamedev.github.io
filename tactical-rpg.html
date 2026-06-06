@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tactical RPG | Loan Dzelili</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .proj-hero {
+            height: 70vh; position: relative;
+            display: flex; align-items: flex-end; justify-content: center;
+            padding-bottom: 70px; overflow: hidden;
+        }
+        .proj-hero-bg {
+            position: absolute; inset: 0;
+            background:
+                linear-gradient(180deg, rgba(10,16,24,0.2) 0%, rgba(10,16,24,0.78) 60%, var(--twilight-deep) 100%),
+                linear-gradient(135deg, #0a1018 0%, #1c2d3f 50%, #0a1018 100%);
+        }
+        .proj-hero-content { position: relative; z-index: 2; text-align: center; max-width: 860px; padding: 0 24px; }
+        .back-link { display: inline-flex; align-items: center; gap: 10px; font-family: 'Cinzel', serif; font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); text-decoration: none; margin-bottom: 40px; transition: color 0.3s; }
+        .back-link:hover { color: var(--gold); }
+        .proj-tag { display: inline-block; font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); border: 1px solid var(--gold-dark); padding: 6px 18px; margin-bottom: 24px; }
+        .proj-hero-title { font-family: 'Cinzel Decorative', serif; font-size: clamp(2rem, 5vw, 4rem); color: var(--text-main); margin-bottom: 18px; line-height: 1.15; }
+        .proj-hero-sub { font-size: 1rem; color: var(--text-muted); font-style: italic; max-width: 500px; margin: 0 auto; }
+        .proj-meta { display: flex; gap: 32px; justify-content: center; flex-wrap: wrap; margin-top: 32px; }
+        .proj-meta-item { text-align: center; }
+        .proj-meta-label { font-family: 'Cinzel', serif; font-size: 0.56rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold-dark); display: block; }
+        .proj-meta-value { font-family: 'Cinzel', serif; font-size: 0.8rem; color: var(--text-main); display: block; margin-top: 4px; }
+
+        .proj-content { max-width: 900px; margin: 0 auto; }
+        .proj-section { margin-bottom: 80px; }
+        .proj-section h2 { font-family: 'Cinzel', serif; font-size: 1.05rem; color: var(--gold); margin-bottom: 24px; letter-spacing: 0.08em; padding-bottom: 12px; border-bottom: 1px solid rgba(201,168,76,0.18); }
+        .proj-section p { color: var(--text-muted); margin-bottom: 16px; font-size: 1rem; }
+        .proj-section p strong { color: var(--text-main); font-weight: 600; }
+
+        /* TWO VIDEOS SIDE BY SIDE */
+        .video-duo { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 12px; }
+        .video-wrap { position: relative; padding-bottom: 56.25%; height: 0; border: 1px solid rgba(201,168,76,0.2); overflow: hidden; }
+        .video-wrap iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+        .video-single { margin-bottom: 12px; border: 1px solid rgba(201,168,76,0.2); position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; }
+        .video-single iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+        .video-caption { font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold-dark); text-align: center; margin-bottom: 48px; }
+        .video-duo-captions { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 48px; }
+        .video-duo-captions span { font-family: 'Cinzel', serif; font-size: 0.58rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold-dark); text-align: center; display: block; }
+
+        .feature-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; }
+        .feature-card { background: var(--twilight-card); padding: 26px 24px; border: 1px solid rgba(201,168,76,0.1); }
+        .feature-card h3 { font-family: 'Cinzel', serif; font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-main); margin-bottom: 10px; }
+        .feature-card p { color: var(--text-muted); font-size: 0.93rem; margin: 0; }
+
+        .challenge-block { background: var(--twilight-card); border-left: 3px solid var(--gold); padding: 26px 30px; margin-bottom: 18px; }
+        .challenge-block h3 { font-family: 'Cinzel', serif; font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+        .challenge-block p { color: var(--text-muted); font-size: 0.96rem; margin: 0; }
+
+        .tech-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+        .tech-item { background: var(--twilight-card); padding: 18px 20px; border: 1px solid rgba(201,168,76,0.08); text-align: center; }
+        .tech-item span { font-family: 'Cinzel', serif; font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-main); }
+
+        .proj-nav { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(201,168,76,0.12); padding-top: 48px; margin-top: 60px; }
+        .proj-nav a { font-family: 'Cinzel', serif; font-size: 0.66rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); text-decoration: none; transition: color 0.3s; }
+        .proj-nav a:hover { color: var(--gold); }
+
+        @media(max-width:900px){
+            .video-duo { grid-template-columns: 1fr; }
+            .video-duo-captions { grid-template-columns: 1fr; }
+            .feature-grid { grid-template-columns: 1fr; }
+            .tech-grid { grid-template-columns: repeat(2,1fr); }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="index.html" class="logo">L · D</a>
+    <nav>
+        <a href="index.html#about">About</a>
+        <a href="index.html#skills">Skills</a>
+        <a href="index.html#projects" class="active">Projects</a>
+        <a href="index.html#contact">Contact</a>
+    </nav>
+</header>
+
+<div class="proj-hero">
+    <div class="proj-hero-bg"></div>
+    <div class="proj-hero-content">
+        <a href="index.html#projects" class="back-link">← Back to Projects</a>
+        <div class="proj-tag">Academic · Unreal Engine 5</div>
+        <h1 class="proj-hero-title">Tactical RPG Prototype</h1>
+        <p class="proj-hero-sub">Grid-based turn-by-turn combat with A* pathfinding, built from scratch in Unreal Engine 5 using C++.</p>
+        <div class="proj-meta">
+            <div class="proj-meta-item"><span class="proj-meta-label">Engine</span><span class="proj-meta-value">Unreal Engine 5</span></div>
+            <div class="proj-meta-item"><span class="proj-meta-label">Language</span><span class="proj-meta-value">C++</span></div>
+            <div class="proj-meta-item"><span class="proj-meta-label">Context</span><span class="proj-meta-value">Academic</span></div>
+            <div class="proj-meta-item"><span class="proj-meta-label">Focus</span><span class="proj-meta-value">Gameplay Systems</span></div>
+        </div>
+    </div>
+</div>
+
+<div class="inner" style="padding-top:80px">
+    <div class="proj-content">
+
+        <div class="proj-section">
+            <h2>Overview</h2>
+            <p>A prototype for a <strong>grid-based tactical RPG</strong> built as an academic project in Unreal Engine 5. The goal was to implement core tactical gameplay systems from the ground up — no pre-built plugins, pure C++ logic.</p>
+            <p>The project covers the full loop: <strong>grid generation, unit movement, turn management, and A* pathfinding</strong>. Each system was designed to be modular and extendable so new unit types or abilities could be added cleanly.</p>
+        </div>
+
+        <!-- TWO VIDEOS -->
+        <div class="proj-section">
+            <h2>Videos</h2>
+            <div class="video-duo">
+                <div class="video-wrap">
+                    <iframe src="https://www.youtube.com/embed/4xLOt9MnO_0" allowfullscreen loading="lazy"></iframe>
+                </div>
+                <div class="video-wrap">
+                    <iframe src="https://www.youtube.com/embed/2p1VsYzAL9w" allowfullscreen loading="lazy"></iframe>
+                </div>
+            </div>
+            <div class="video-duo-captions">
+                <span>Programming breakdown</span>
+                <span>Gameplay presentation</span>
+            </div>
+        </div>
+
+        <div class="proj-section">
+            <h2>Key Features</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>Grid Movement System</h3>
+                    <p>Dynamic grid generated at runtime. Units navigate tile-by-tile with movement range calculated and highlighted in real time.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>A* Pathfinding</h3>
+                    <p>Custom A* implementation in C++ that accounts for blocked tiles, movement cost, and unit positions on the grid.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Turn-Based Logic</h3>
+                    <p>Turn manager cycling between player and AI phases, handling action points, unit order, and end-of-turn conditions.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Modular Unit System</h3>
+                    <p>Base unit class with overridable stats and abilities — new unit types can be added without touching core logic.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="proj-section">
+            <h2>Technical Challenges</h2>
+            <div class="challenge-block">
+                <h3>A* From Scratch in C++</h3>
+                <p>Implementing pathfinding without relying on existing libraries required a solid understanding of the algorithm and clean data structures. Getting it to run efficiently on large grids while accounting for dynamic obstacles was the biggest technical hurdle.</p>
+            </div>
+            <div class="challenge-block">
+                <h3>Grid-World Coordinate Precision</h3>
+                <p>Translating between grid coordinates and world-space positions without floating-point drift required careful design of the grid component. Small rounding errors caused units to misalign — fixing this taught me to be precise about coordinate systems from the very start.</p>
+            </div>
+        </div>
+
+        <div class="proj-section">
+            <h2>Tech Stack</h2>
+            <div class="tech-grid">
+                <div class="tech-item"><span>Unreal Engine 5</span></div>
+                <div class="tech-item"><span>C++</span></div>
+                <div class="tech-item"><span>A* Pathfinding</span></div>
+                <div class="tech-item"><span>Blueprint (UI)</span></div>
+                <div class="tech-item"><span>Git</span></div>
+                <div class="tech-item"><span>Visual Studio</span></div>
+            </div>
+        </div>
+
+        <div class="proj-nav">
+            <a href="lampyris-moon.html">← Lampyris Moon</a>
+            <a href="gravity-prototype.html">Next: Gravity Prototype →</a>
+        </div>
+
+    </div>
+</div>
+
+<footer>
+    <p>© 2026 Loan Dzelili</p>
+    <span class="footer-logo">L · D</span>
+    <p>HEAJ · Belgium</p>
+</footer>
+</body>
+</html>

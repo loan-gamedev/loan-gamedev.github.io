@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gravity Prototype | Loan Dzelili</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .proj-hero {
+            height: 70vh; position: relative;
+            display: flex; align-items: flex-end; justify-content: center;
+            padding-bottom: 70px; overflow: hidden;
+        }
+        .proj-hero-bg {
+            position: absolute; inset: 0;
+            background:
+                linear-gradient(180deg, rgba(8,10,20,0.15) 0%, rgba(8,10,22,0.8) 60%, var(--twilight-deep) 100%),
+                radial-gradient(ellipse 70% 60% at 30% 50%, rgba(74,127,168,0.18) 0%, transparent 65%),
+                linear-gradient(135deg, #080b16 0%, #101828 50%, #080b16 100%);
+        }
+        .proj-hero-content { position: relative; z-index: 2; text-align: center; max-width: 860px; padding: 0 24px; }
+        .back-link { display: inline-flex; align-items: center; gap: 10px; font-family: 'Cinzel', serif; font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); text-decoration: none; margin-bottom: 40px; transition: color 0.3s; }
+        .back-link:hover { color: var(--gold); }
+        .proj-tag { display: inline-block; font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); border: 1px solid var(--gold-dark); padding: 6px 18px; margin-bottom: 24px; }
+        .proj-hero-title { font-family: 'Cinzel Decorative', serif; font-size: clamp(1.8rem, 5vw, 3.8rem); color: var(--text-main); margin-bottom: 18px; line-height: 1.15; }
+        .proj-hero-sub { font-size: 1rem; color: var(--text-muted); font-style: italic; max-width: 520px; margin: 0 auto; }
+        .proj-meta { display: flex; gap: 32px; justify-content: center; flex-wrap: wrap; margin-top: 32px; }
+        .proj-meta-item { text-align: center; }
+        .proj-meta-label { font-family: 'Cinzel', serif; font-size: 0.56rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold-dark); display: block; }
+        .proj-meta-value { font-family: 'Cinzel', serif; font-size: 0.8rem; color: var(--text-main); display: block; margin-top: 4px; }
+
+        .proj-content { max-width: 900px; margin: 0 auto; }
+        .proj-section { margin-bottom: 80px; }
+        .proj-section h2 { font-family: 'Cinzel', serif; font-size: 1.05rem; color: var(--gold); margin-bottom: 24px; letter-spacing: 0.08em; padding-bottom: 12px; border-bottom: 1px solid rgba(201,168,76,0.18); }
+        .proj-section p { color: var(--text-muted); margin-bottom: 16px; font-size: 1rem; }
+        .proj-section p strong { color: var(--text-main); font-weight: 600; }
+
+        /* INSPIRATION BLOCK */
+        .inspiration-block {
+            display: flex; gap: 28px; align-items: flex-start;
+            background: var(--twilight-card); border: 1px solid rgba(201,168,76,0.12);
+            padding: 28px 30px; margin-bottom: 40px;
+        }
+        .inspiration-icon {
+            font-family: 'Cinzel Decorative', serif; font-size: 2.4rem;
+            color: rgba(201,168,76,0.2); min-width: 60px; line-height: 1;
+            text-align: center; padding-top: 4px;
+        }
+        .inspiration-text h3 { font-family: 'Cinzel', serif; font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+        .inspiration-text p { color: var(--text-muted); font-size: 0.96rem; margin: 0; }
+
+        /* VIDEO */
+        .video-wrap { position: relative; padding-bottom: 56.25%; height: 0; border: 1px solid rgba(201,168,76,0.2); overflow: hidden; margin-bottom: 12px; }
+        .video-wrap iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+        .video-caption { font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold-dark); text-align: center; margin-bottom: 48px; }
+
+        .feature-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; }
+        .feature-card { background: var(--twilight-card); padding: 26px 24px; border: 1px solid rgba(201,168,76,0.1); }
+        .feature-card h3 { font-family: 'Cinzel', serif; font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-main); margin-bottom: 10px; }
+        .feature-card p { color: var(--text-muted); font-size: 0.93rem; margin: 0; }
+
+        .challenge-block { background: var(--twilight-card); border-left: 3px solid var(--gold); padding: 26px 30px; margin-bottom: 18px; }
+        .challenge-block h3 { font-family: 'Cinzel', serif; font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+        .challenge-block p { color: var(--text-muted); font-size: 0.96rem; margin: 0; }
+
+        .tech-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+        .tech-item { background: var(--twilight-card); padding: 18px 20px; border: 1px solid rgba(201,168,76,0.08); text-align: center; }
+        .tech-item span { font-family: 'Cinzel', serif; font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-main); }
+
+        .proj-nav { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(201,168,76,0.12); padding-top: 48px; margin-top: 60px; }
+        .proj-nav a { font-family: 'Cinzel', serif; font-size: 0.66rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); text-decoration: none; transition: color 0.3s; }
+        .proj-nav a:hover { color: var(--gold); }
+
+        @media(max-width:900px){
+            .inspiration-block { flex-direction: column; }
+            .feature-grid { grid-template-columns: 1fr; }
+            .tech-grid { grid-template-columns: repeat(2,1fr); }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="index.html" class="logo">L · D</a>
+    <nav>
+        <a href="index.html#about">About</a>
+        <a href="index.html#skills">Skills</a>
+        <a href="index.html#projects" class="active">Projects</a>
+        <a href="index.html#contact">Contact</a>
+    </nav>
+</header>
+
+<div class="proj-hero">
+    <div class="proj-hero-bg"></div>
+    <div class="proj-hero-content">
+        <a href="index.html#projects" class="back-link">← Back to Projects</a>
+        <div class="proj-tag">Academic · Unreal Engine 5 · Blueprint</div>
+        <h1 class="proj-hero-title">Gravity Rush<br>Mechanic Prototype</h1>
+        <p class="proj-hero-sub">A faithful reproduction of Gravity Rush's gravity-shift and attack system, built entirely in Blueprint inside Unreal Engine 5.</p>
+        <div class="proj-meta">
+            <div class="proj-meta-item"><span class="proj-meta-label">Engine</span><span class="proj-meta-value">Unreal Engine 5</span></div>
+            <div class="proj-meta-item"><span class="proj-meta-label">Scripting</span><span class="proj-meta-value">Blueprint</span></div>
+            <div class="proj-meta-item"><span class="proj-meta-label">Context</span><span class="proj-meta-value">Academic</span></div>
+            <div class="proj-meta-item"><span class="proj-meta-label">Focus</span><span class="proj-meta-value">Physics · Movement</span></div>
+        </div>
+    </div>
+</div>
+
+<div class="inner" style="padding-top:80px">
+    <div class="proj-content">
+
+        <div class="proj-section">
+            <h2>Overview</h2>
+
+            <div class="inspiration-block">
+                <div class="inspiration-icon">GR</div>
+                <div class="inspiration-text">
+                    <h3>Inspired by Gravity Rush</h3>
+                    <p>Gravity Rush (PlayStation) features a unique mechanic where the player can redefine the direction of gravity at will — shifting their weight toward any surface, flying through the air, and performing dive attacks. Reproducing this system from scratch was the core challenge of this project.</p>
+                </div>
+            </div>
+
+            <p>This prototype is a <strong>Blueprint-only reproduction</strong> of Gravity Rush's two signature mechanics: the <strong>gravity shift system</strong> and the <strong>aerial attack</strong>. The goal was to reverse-engineer the feel of an existing mechanic and rebuild it from first principles inside Unreal Engine 5.</p>
+            <p>No external plugins. No C++. Pure Blueprint logic — which meant understanding not just what the mechanic does, but <strong>why it feels the way it does</strong>.</p>
+        </div>
+
+        <!-- VIDEO -->
+        <div class="proj-section">
+            <h2>Prototype Demo</h2>
+            <div class="video-wrap">
+                <iframe src="https://www.youtube.com/embed/hjItHSWSMUs" allowfullscreen loading="lazy"></iframe>
+            </div>
+            <p class="video-caption">Prototype gameplay — gravity shift & attack system</p>
+        </div>
+
+        <div class="proj-section">
+            <h2>Key Features</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>Gravity Shift System</h3>
+                    <p>The player can redirect gravity in real time toward any direction. The character's orientation, physics, and camera all adapt dynamically to the new gravity axis.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Aerial Attack Mechanic</h3>
+                    <p>While in freefall or gravity-shifted state, the player can launch a directed dive attack — locking onto a target direction and propelling toward it at high speed.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Dynamic Character Orientation</h3>
+                    <p>The character mesh and movement direction rotate smoothly to match the current gravity direction, preserving momentum across transitions.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Blueprint Architecture</h3>
+                    <p>The entire system is built in Blueprint with clean separation between gravity logic, movement, camera, and attack — each in its own component for readability.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="proj-section">
+            <h2>Technical Challenges</h2>
+            <div class="challenge-block">
+                <h3>Reproducing the "Feel" of Gravity Rush</h3>
+                <p>The hardest part wasn't the physics math — it was getting the transitions to feel right. Gravity Rush's shifts feel fluid and intentional, not jarring. Achieving that in Blueprint required careful tuning of interpolation curves, camera lag, and momentum preservation across gravity changes.</p>
+            </div>
+            <div class="challenge-block">
+                <h3>Custom Gravity in Unreal Engine</h3>
+                <p>UE5's default character movement component assumes a fixed downward gravity. Overriding this in Blueprint — redirecting gravity, modifying the movement plane, and keeping the character grounded on arbitrary surfaces — required a deep dive into how the engine handles physics and movement at the component level.</p>
+            </div>
+            <div class="challenge-block">
+                <h3>Camera Behaviour During Gravity Shift</h3>
+                <p>The camera needed to follow the gravity shift smoothly without disorienting the player. Getting the rotation order and interpolation right so the player always has a clear sense of "up" — even mid-shift — was one of the trickiest parts of the project.</p>
+            </div>
+        </div>
+
+        <div class="proj-section">
+            <h2>Tech Stack</h2>
+            <div class="tech-grid">
+                <div class="tech-item"><span>Unreal Engine 5</span></div>
+                <div class="tech-item"><span>Blueprint</span></div>
+                <div class="tech-item"><span>Custom Physics</span></div>
+                <div class="tech-item"><span>Character Movement</span></div>
+                <div class="tech-item"><span>Camera System</span></div>
+                <div class="tech-item"><span>Git</span></div>
+            </div>
+        </div>
+
+        <div class="proj-nav">
+            <a href="tactical-rpg.html">← Tactical RPG</a>
+            <a href="index.html#projects">All Projects →</a>
+        </div>
+
+    </div>
+</div>
+
+<footer>
+    <p>© 2026 Loan Dzelili</p>
+    <span class="footer-logo">L · D</span>
+    <p>HEAJ · Belgium</p>
+</footer>
+</body>
+</html>

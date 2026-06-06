@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lampyris Moon | Loan Dzelili</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .proj-hero {
+            height: 85vh; position: relative;
+            display: flex; align-items: flex-end; justify-content: center;
+            padding-bottom: 80px; overflow: hidden;
+        }
+        .proj-hero-bg {
+            position: absolute; inset: 0;
+            background:
+                linear-gradient(180deg, rgba(6,13,20,0.1) 0%, rgba(6,13,20,0.7) 60%, var(--twilight-deep) 100%),
+                linear-gradient(135deg, #040810 0%, #0b1520 50%, #040a12 100%);
+        }
+        .proj-hero-img {
+            position: absolute; inset: 0; width: 100%; height: 100%;
+            object-fit: cover; opacity: 0.22; filter: saturate(0.5) brightness(0.8);
+        }
+        .proj-hero-content { position: relative; z-index: 2; text-align: center; max-width: 900px; padding: 0 24px; }
+        .back-link {
+            display: inline-flex; align-items: center; gap: 10px;
+            font-family: 'Cinzel', serif; font-size: 0.62rem;
+            letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted);
+            text-decoration: none; margin-bottom: 40px; transition: color 0.3s;
+        }
+        .back-link:hover { color: var(--gold); }
+        .proj-tag {
+            display: inline-block; font-family: 'Cinzel', serif; font-size: 0.6rem;
+            letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold);
+            border: 1px solid var(--gold-dark); padding: 6px 18px; margin-bottom: 24px;
+        }
+        .proj-hero-title {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: clamp(2.4rem, 6vw, 5rem);
+            color: var(--text-main); margin-bottom: 20px; line-height: 1.1;
+        }
+        .proj-hero-sub {
+            font-size: 1.05rem; color: var(--text-muted); font-style: italic;
+            max-width: 560px; margin: 0 auto 36px;
+        }
+        .proj-meta { display: flex; gap: 32px; justify-content: center; flex-wrap: wrap; margin-top: 32px; }
+        .proj-meta-item { text-align: center; }
+        .proj-meta-label { font-family: 'Cinzel', serif; font-size: 0.56rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold-dark); display: block; }
+        .proj-meta-value { font-family: 'Cinzel', serif; font-size: 0.8rem; color: var(--text-main); display: block; margin-top: 4px; }
+
+        .proj-content { max-width: 900px; margin: 0 auto; }
+        .proj-section { margin-bottom: 80px; }
+        .proj-section h2 {
+            font-family: 'Cinzel', serif; font-size: 1.05rem; color: var(--gold);
+            margin-bottom: 24px; letter-spacing: 0.08em;
+            padding-bottom: 12px; border-bottom: 1px solid rgba(201,168,76,0.18);
+        }
+        .proj-section p { color: var(--text-muted); margin-bottom: 16px; font-size: 1rem; }
+        .proj-section p strong { color: var(--text-main); font-weight: 600; }
+
+        /* VIDEO EMBED */
+        .video-wrap {
+            position: relative; padding-bottom: 56.25%; height: 0;
+            border: 1px solid rgba(201,168,76,0.2); overflow: hidden;
+            margin-bottom: 12px;
+        }
+        .video-wrap iframe {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;
+        }
+        .video-caption {
+            font-family: 'Cinzel', serif; font-size: 0.6rem;
+            letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold-dark);
+            text-align: center; margin-bottom: 48px;
+        }
+
+        .feature-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; }
+        .feature-card { background: var(--twilight-card); padding: 28px 26px; border: 1px solid rgba(201,168,76,0.1); }
+        .feature-card h3 { font-family: 'Cinzel', serif; font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-main); margin-bottom: 10px; }
+        .feature-card p { color: var(--text-muted); font-size: 0.93rem; margin: 0; }
+
+        .challenge-block { background: var(--twilight-card); border-left: 3px solid var(--gold); padding: 26px 30px; margin-bottom: 18px; }
+        .challenge-block h3 { font-family: 'Cinzel', serif; font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+        .challenge-block p { color: var(--text-muted); font-size: 0.96rem; margin: 0; }
+
+        .tech-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+        .tech-item { background: var(--twilight-card); padding: 18px 20px; border: 1px solid rgba(201,168,76,0.08); text-align: center; }
+        .tech-item span { font-family: 'Cinzel', serif; font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-main); }
+
+        .lesson { display: flex; gap: 20px; margin-bottom: 22px; }
+        .lesson-num { font-family: 'Cinzel Decorative', serif; font-size: 1.4rem; color: rgba(201,168,76,0.2); min-width: 36px; line-height: 1.2; }
+        .lesson-text h3 { font-family: 'Cinzel', serif; font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-main); margin-bottom: 6px; }
+        .lesson-text p { color: var(--text-muted); font-size: 0.95rem; margin: 0; }
+
+        .proj-nav { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(201,168,76,0.12); padding-top: 48px; margin-top: 60px; }
+        .proj-nav a { font-family: 'Cinzel', serif; font-size: 0.66rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); text-decoration: none; transition: color 0.3s; }
+        .proj-nav a:hover { color: var(--gold); }
+
+        @media(max-width:900px){ .feature-grid{grid-template-columns:1fr} .tech-grid{grid-template-columns:repeat(2,1fr)} }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="index.html" class="logo">L · D</a>
+    <nav>
+        <a href="index.html#about">About</a>
+        <a href="index.html#skills">Skills</a>
+        <a href="index.html#projects" class="active">Projects</a>
+        <a href="index.html#contact">Contact</a>
+    </nav>
+</header>
+
+<div class="proj-hero">
+    <div class="proj-hero-bg"></div>
+    <img class="proj-hero-img" src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/4626350/7da61e881ed2a9bbe6aeaf469c827e988bf63af7/capsule_616x353.jpg?t=1778422337" alt="Lampyris Moon">
+    <div class="proj-hero-content">
+        <a href="index.html#projects" class="back-link">← Back to Projects</a>
+        <div class="proj-tag">Featured · Solo Indie · Steam Release</div>
+        <h1 class="proj-hero-title">Lampyris Moon</h1>
+        <p class="proj-hero-sub">A narrative psychological horror game where a strange night unfolds a disturbing story through the eyes of the one who lived it.</p>
+        <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+            <a href="https://store.steampowered.com/app/4626350/Lampyris_Moon/" target="_blank" class="btn-gold"><span>Play on Steam</span></a>
+        </div>
+        <div class="proj-meta">
+            <div class="proj-meta-item"><span class="proj-meta-label">Release</span><span class="proj-meta-value">May 10, 2026</span></div>
+            <div class="proj-meta-item"><span class="proj-meta-label">Engine</span><span class="proj-meta-value">Unity</span></div>
+            <div class="proj-meta-item"><span class="proj-meta-label">Language</span><span class="proj-meta-value">C#</span></div>
+            <div class="proj-meta-item"><span class="proj-meta-label">Duration</span><span class="proj-meta-value">~1h30</span></div>
+            <div class="proj-meta-item"><span class="proj-meta-label">Team</span><span class="proj-meta-value">Solo</span></div>
+        </div>
+    </div>
+</div>
+
+<div class="inner" style="padding-top:80px">
+    <div class="proj-content">
+
+        <div class="proj-section">
+            <h2>Overview</h2>
+            <p>On a night when the moon seems different, a lone individual ventures into a <strong>silent but oppressive environment</strong>. Very quickly, a strange feeling takes hold — as if something is watching, lurking in the shadows.</p>
+            <p>Lampyris Moon is a <strong>first-person narrative psychological horror game</strong> that I designed, developed, and published entirely on my own. The goal was simple and hard at the same time: make the player feel something through mechanics, not just cutscenes. Build tension through systems. Let the world do the storytelling.</p>
+            <p>The game was released on Steam on <strong>May 10, 2026</strong>, under my studio name Lawnite.</p>
+        </div>
+
+        <!-- VIDEO -->
+        <div class="proj-section">
+            <h2>Gameplay Trailer</h2>
+            <div class="video-wrap">
+                <iframe src="https://www.youtube.com/embed/domf3BwDVqM" allowfullscreen loading="lazy"></iframe>
+            </div>
+            <p class="video-caption">Official gameplay trailer — Lampyris Moon</p>
+        </div>
+
+        <div class="proj-section">
+            <h2>Key Features</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>NPC Dialogue System</h3>
+                    <p>Mysterious characters who know more than they let on. Conversations that can guide — or mislead — the player through the narrative.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Environmental Puzzles</h3>
+                    <p>Logic that seems to have shifted. Players must observe carefully and interact with a world that reacts unpredictably to their presence.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Multiple Enemy AI</h3>
+                    <p>Different entities haunt the world, each with its own behaviour pattern and intentions. State-machine-driven enemy logic implemented from scratch.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Narrative Horror Design</h3>
+                    <p>The story is experienced through gameplay, not told through cutscenes. Tension and dread are built into the systems themselves.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="proj-section">
+            <h2>Technical Challenges</h2>
+            <div class="challenge-block">
+                <h3>Narrative Through Mechanics</h3>
+                <p>The hardest problem was making gameplay carry the narrative without relying solely on dialogue or scripted events. Every system had to serve both a functional and an emotional purpose — the way an enemy behaves, how the environment responds, what objects are interactable.</p>
+            </div>
+            <div class="challenge-block">
+                <h3>Enemy Behaviour Architecture</h3>
+                <p>Building multiple enemy types with distinct, believable behaviours required a clean state machine architecture in C#. Each entity needed to feel different — not just look different — so I designed their movement, detection, and reaction systems independently with shared base logic.</p>
+            </div>
+            <div class="challenge-block">
+                <h3>Solo Full-Cycle Development</h3>
+                <p>Working alone from concept to Steam release meant handling everything: gameplay programming, level design, dialogue writing, asset integration, store page setup, and bug fixing under real-world conditions.</p>
+            </div>
+        </div>
+
+        <div class="proj-section">
+            <h2>Tech Stack</h2>
+            <div class="tech-grid">
+                <div class="tech-item"><span>Unity</span></div>
+                <div class="tech-item"><span>C#</span></div>
+                <div class="tech-item"><span>State Machines</span></div>
+                <div class="tech-item"><span>NavMesh AI</span></div>
+                <div class="tech-item"><span>Dialogue System</span></div>
+                <div class="tech-item"><span>Git</span></div>
+            </div>
+        </div>
+
+        <div class="proj-section">
+            <h2>What I Learned</h2>
+            <div class="lesson">
+                <span class="lesson-num">01</span>
+                <div class="lesson-text">
+                    <h3>Gameplay is a narrative tool</h3>
+                    <p>Making a player feel fear through a mechanic — not a jumpscare — is genuinely difficult. This project taught me to think of every system as a storytelling decision.</p>
+                </div>
+            </div>
+            <div class="lesson">
+                <span class="lesson-num">02</span>
+                <div class="lesson-text">
+                    <h3>Shipping is different from building</h3>
+                    <p>There's a huge gap between a project that works and a product that's ready. Going through the Steam publishing process taught me what shipping actually means.</p>
+                </div>
+            </div>
+            <div class="lesson">
+                <span class="lesson-num">03</span>
+                <div class="lesson-text">
+                    <h3>Constraints force better decisions</h3>
+                    <p>Working alone with limited time forced me to cut scope, prioritize, and focus on what actually makes the experience. That discipline carried into every project after.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="proj-nav">
+            <a href="index.html#projects">← All Projects</a>
+            <a href="tactical-rpg.html">Next: Tactical RPG →</a>
+        </div>
+
+    </div>
+</div>
+
+<footer>
+    <p>© 2026 Loan Dzelili</p>
+    <span class="footer-logo">L · D</span>
+    <p>HEAJ · Belgium</p>
+</footer>
+</body>
+</html>
