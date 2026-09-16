@@ -95,7 +95,7 @@
     <div class="proj-hero-bg"></div>
     <div class="proj-hero-content">
         <a href="index.html#projects" class="back-link">← Back to Projects</a>
-        <div class="proj-tag">Academic · Unreal Engine 5 · Blueprint</div>
+        <div class="proj-tag">Academic</div>
         <h1 class="proj-hero-title">Gravity Rush<br>Mechanic Prototype</h1>
         <p class="proj-hero-sub">A faithful reproduction of Gravity Rush's gravity-shift and attack system, built entirely in Blueprint inside Unreal Engine 5.</p>
         <div class="proj-meta">
@@ -117,12 +117,12 @@
                 <div class="inspiration-icon">GR</div>
                 <div class="inspiration-text">
                     <h3>Inspired by Gravity Rush</h3>
-                    <p>Gravity Rush (PlayStation) features a unique mechanic where the player can redefine the direction of gravity at will — shifting their weight toward any surface, flying through the air, and performing dive attacks. Reproducing this system from scratch was the core challenge of this project.</p>
+                    <p>Gravity Rush features a unique mechanic where the player can redefine the direction of gravity at will, shifting their weight toward any surface, flying through the air, and performing dive attacks. Reproducing this system from scratch was the core challenge of this project.</p>
                 </div>
             </div>
 
             <p>This prototype is a <strong>Blueprint-only reproduction</strong> of Gravity Rush's two signature mechanics: the <strong>gravity shift system</strong> and the <strong>aerial attack</strong>. The goal was to reverse-engineer the feel of an existing mechanic and rebuild it from first principles inside Unreal Engine 5.</p>
-            <p>No external plugins. No C++. Pure Blueprint logic — which meant understanding not just what the mechanic does, but <strong>why it feels the way it does</strong>.</p>
+            <p>No external plugins. No C++. Pure Blueprint logic, which meant understanding not just what the mechanic does, but why it feels the way it does.</p>
         </div>
 
         <!-- VIDEO -->
@@ -143,7 +143,7 @@
                 </div>
                 <div class="feature-card">
                     <h3>Aerial Attack Mechanic</h3>
-                    <p>While in freefall or gravity-shifted state, the player can launch a directed dive attack — locking onto a target direction and propelling toward it at high speed.</p>
+                    <p>While in freefall or gravity-shifted state, the player can launch a directed dive attack, locking onto a target direction and propelling toward it at high speed.</p>
                 </div>
                 <div class="feature-card">
                     <h3>Dynamic Character Orientation</h3>
@@ -151,7 +151,7 @@
                 </div>
                 <div class="feature-card">
                     <h3>Blueprint Architecture</h3>
-                    <p>The entire system is built in Blueprint with clean separation between gravity logic, movement, camera, and attack — each in its own component for readability.</p>
+                    <p>The entire system is built in Blueprint with clean separation between gravity logic, movement, camera, and attack, each in its own component for readability.</p>
                 </div>
             </div>
         </div>
@@ -160,15 +160,15 @@
             <h2>Technical Challenges</h2>
             <div class="challenge-block">
                 <h3>Reproducing the "Feel" of Gravity Rush</h3>
-                <p>The hardest part wasn't the physics math — it was getting the transitions to feel right. Gravity Rush's shifts feel fluid and intentional, not jarring. Achieving that in Blueprint required careful tuning of interpolation curves, camera lag, and momentum preservation across gravity changes.</p>
+                <p>The hardest part wasn't the physics math, it was getting the transitions to feel right. Gravity Rush's shifts feel fluid and intentional, not jarring. Achieving that in Blueprint required careful tuning of interpolation curves, camera lag, and momentum preservation across gravity changes.</p>
             </div>
             <div class="challenge-block">
                 <h3>Custom Gravity in Unreal Engine</h3>
-                <p>UE5's default character movement component assumes a fixed downward gravity. Overriding this in Blueprint — redirecting gravity, modifying the movement plane, and keeping the character grounded on arbitrary surfaces — required a deep dive into how the engine handles physics and movement at the component level.</p>
+                <p>UE5's default character movement component assumes a fixed downward gravity. Overriding this in Blueprint, redirecting gravity, modifying the movement plane, and keeping the character grounded on arbitrary surfaces, required a deep dive into how the engine handles physics and movement at the component level.</p>
             </div>
             <div class="challenge-block">
                 <h3>Camera Behaviour During Gravity Shift</h3>
-                <p>The camera needed to follow the gravity shift smoothly without disorienting the player. Getting the rotation order and interpolation right so the player always has a clear sense of "up" — even mid-shift — was one of the trickiest parts of the project.</p>
+                <p>The camera needed to follow the gravity shift smoothly without disorienting the player. Getting the rotation order and interpolation right so the player always has a clear sense of "up", even mid-shift, was one of the trickiest parts of the project.</p>
             </div>
         </div>
 
@@ -180,7 +180,6 @@
                 <div class="tech-item"><span>Custom Physics</span></div>
                 <div class="tech-item"><span>Character Movement</span></div>
                 <div class="tech-item"><span>Camera System</span></div>
-                <div class="tech-item"><span>Git</span></div>
             </div>
         </div>
 
