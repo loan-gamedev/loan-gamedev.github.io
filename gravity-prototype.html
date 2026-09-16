@@ -55,6 +55,13 @@
         .video-wrap iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
         .video-caption { font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold-dark); text-align: center; margin-bottom: 48px; }
 
+        /* PLAYABLE BUILD */
+        .download-block { display: flex; align-items: center; justify-content: space-between; gap: 28px; background: linear-gradient(135deg, rgba(201,168,76,0.1), var(--twilight-card)); border: 1px solid rgba(201,168,76,0.28); padding: 30px 32px; }
+        .download-copy h3 { font-family: 'Cinzel', serif; font-size: 0.82rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+        .download-copy p { color: var(--text-muted); font-size: 0.96rem; margin: 0; }
+        .download-button { display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; font-family: 'Cinzel', serif; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--twilight-deep); background: var(--gold); padding: 14px 22px; text-decoration: none; transition: background 0.3s, transform 0.3s; }
+        .download-button:hover { background: var(--text-main); transform: translateY(-2px); }
+
         .feature-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; }
         .feature-card { background: var(--twilight-card); padding: 26px 24px; border: 1px solid rgba(201,168,76,0.1); }
         .feature-card h3 { font-family: 'Cinzel', serif; font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-main); margin-bottom: 10px; }
@@ -74,6 +81,7 @@
 
         @media(max-width:900px){
             .inspiration-block { flex-direction: column; }
+            .download-block { align-items: flex-start; flex-direction: column; }
             .feature-grid { grid-template-columns: 1fr; }
             .tech-grid { grid-template-columns: repeat(2,1fr); }
         }
@@ -132,6 +140,17 @@
                 <iframe src="https://www.youtube.com/embed/hjItHSWSMUs" allowfullscreen loading="lazy"></iframe>
             </div>
             <p class="video-caption">Prototype gameplay — gravity shift & attack system</p>
+        </div>
+
+        <div class="proj-section">
+            <h2>Download &amp; Play</h2>
+            <div class="download-block">
+                <div class="download-copy">
+                    <h3>Try the playable prototype (PASSWORD = DEV)</h3>
+                    <p>Download the game from itch.io and test the gravity-shift and aerial attack mechanics yourself.</p>
+                </div>
+                <a class="download-button" href="https://luaniii.itch.io/gravity-rush-mechanic-prototype" target="_blank" rel="noopener noreferrer">Download Game ↗</a>
+            </div>
         </div>
 
         <div class="proj-section">
