@@ -6,6 +6,9 @@
     <title>Tactical RPG | Loan Dzelili</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/cpp.min.js"></script>
     <style>
         .proj-hero {
             height: 70vh; position: relative;
@@ -58,6 +61,18 @@
         .tech-item { background: var(--twilight-card); padding: 18px 20px; border: 1px solid rgba(201,168,76,0.08); text-align: center; }
         .tech-item span { font-family: 'Cinzel', serif; font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-main); }
 
+        /* SOURCE CODE ACCORDION */
+        .code-block { background: var(--twilight-card); border: 1px solid rgba(201,168,76,0.15); margin-bottom: 14px; }
+        .code-summary { font-family: 'Cinzel', serif; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); padding: 18px 24px; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+        .code-summary::-webkit-details-marker { display: none; }
+        .code-summary::after { content: '+'; font-size: 1.1rem; color: var(--gold-dark); }
+        details[open] .code-summary::after { content: '\2212'; }
+        .code-block pre { margin: 0; max-height: 500px; overflow: auto; }
+        .code-block pre code { font-family: 'Courier New', monospace; font-size: 0.82rem; padding: 20px 24px !important; }
+        .code-links { display: flex; gap: 16px; margin-bottom: 24px; }
+        .code-links a { font-family: 'Cinzel', serif; font-size: 0.64rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-main); border: 1px solid var(--gold-dark); padding: 10px 22px; text-decoration: none; transition: 0.3s; }
+        .code-links a:hover { background: var(--gold); color: var(--twilight-deep); }
+
         .proj-nav { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(201,168,76,0.12); padding-top: 48px; margin-top: 60px; }
         .proj-nav a { font-family: 'Cinzel', serif; font-size: 0.66rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); text-decoration: none; transition: color 0.3s; }
         .proj-nav a:hover { color: var(--gold); }
@@ -85,7 +100,7 @@
 <div class="proj-hero">
     <div class="proj-hero-bg"></div>
     <div class="proj-hero-content">
-        <a href="index.html#projects" class="back-link">← Back to Projects</a>
+        <a href="index.html#projects" class="back-link">&larr; Back to Projects</a>
         <div class="proj-tag">Academic</div>
         <h1 class="proj-hero-title">Tactical RPG Prototype</h1>
         <p class="proj-hero-sub">Grid-based turn-by-turn combat with A* pathfinding, built from scratch in Unreal Engine 5 using C++.</p>
@@ -159,6 +174,33 @@
         </div>
 
         <div class="proj-section">
+            <h2>Source Code</h2>
+            <div class="code-links">
+                <a href="https://github.com/loan-gamedev/TacticalRPG" target="_blank">View full repository &rarr;</a>
+            </div>
+
+            <details class="code-block">
+                <summary class="code-summary">PathfindingAction.cpp &mdash; A* implementation</summary>
+                <pre><code id="code-pathfinding" class="language-cpp">Loading...</code></pre>
+            </details>
+
+            <details class="code-block">
+                <summary class="code-summary">GridManager.cpp &mdash; grid &amp; tile management</summary>
+                <pre><code id="code-grid" class="language-cpp">Loading...</code></pre>
+            </details>
+
+            <details class="code-block">
+                <summary class="code-summary">Units.cpp &mdash; base unit class</summary>
+                <pre><code id="code-units" class="language-cpp">Loading...</code></pre>
+            </details>
+
+            <details class="code-block">
+                <summary class="code-summary">Player_Character.cpp &mdash; player-controlled unit</summary>
+                <pre><code id="code-player" class="language-cpp">Loading...</code></pre>
+            </details>
+        </div>
+
+        <div class="proj-section">
             <h2>Tech Stack</h2>
             <div class="tech-grid">
                 <div class="tech-item"><span>Unreal Engine 5</span></div>
@@ -171,17 +213,59 @@
         </div>
 
         <div class="proj-nav">
-            <a href="lampyris-moon.html">← Lampyris Moon</a>
-            <a href="gravity-prototype.html">Next: Gravity Prototype →</a>
+            <a href="lampyris-moon.html">&larr; Lampyris Moon</a>
+            <a href="gravity-prototype.html">Next: Gravity Prototype &rarr;</a>
         </div>
 
     </div>
 </div>
 
 <footer>
-    <p>© 2026 Loan Dzelili</p>
+    <p>&copy; 2026 Loan Dzelili</p>
     <span class="footer-logo">L · D</span>
-    <p>HEAJ · Belgium</p>
+    <p>HEAJ &middot; Belgium</p>
 </footer>
+
+<script>
+async function loadCode(elementId, fileUrl) {
+    const element = document.getElementById(elementId);
+
+    try {
+        const response = await fetch(fileUrl);
+
+        if (!response.ok) {
+            throw new Error("Unable to load file");
+        }
+
+        const code = await response.text();
+        element.textContent = code;
+        hljs.highlightElement(element);
+    } catch (error) {
+        element.textContent = "Unable to load source code.";
+        console.error(error);
+    }
+}
+
+// Update these paths if the source files are stored in a subfolder of the repository.
+loadCode(
+    "code-pathfinding",
+    "https://raw.githubusercontent.com/loan-gamedev/TacticalRPG/main/PathfindingAction.cpp"
+);
+
+loadCode(
+    "code-grid",
+    "https://raw.githubusercontent.com/loan-gamedev/TacticalRPG/main/GridManager.cpp"
+);
+
+loadCode(
+    "code-units",
+    "https://raw.githubusercontent.com/loan-gamedev/TacticalRPG/main/Units.cpp"
+);
+
+loadCode(
+    "code-player",
+    "https://raw.githubusercontent.com/loan-gamedev/TacticalRPG/main/Player_Character.cpp"
+);
+</script>
 </body>
 </html>
